@@ -2,8 +2,8 @@
   "devDependencies": {
     "tailwindcss": "^3.1.8"
   },
-  "name": "14.2taller-2-js",
-  "description": "��#\u0000 \u0000P\u0000-\u0000G\u0000a\u0000m\u0000e\u0000_\u0000J\u0000S\u0000\r\u0000 \u0000",
+  "name": "game-js",
+  "description": "This is a game made using JS",
   "version": "1.0.0",
   "main": "tailwind.config.js",
   "dependencies": {
@@ -74,7 +74,7 @@
   },
   "keywords": [],
   "author": "Octavio Palomino <octepc.97@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/devpcastello/P-Game_JS/issues"
   },
