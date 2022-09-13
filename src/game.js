@@ -28,17 +28,27 @@ const startGame = () => {
   const map = maps[0];
   const mapRows = map.trim().split("\n");
   const mapRowCols = mapRows.map((row) => row.trim().split(""));
-  console.log(mapRowCols);
+  // console.log(mapRowCols);
 
-  for (let row = 0; row < 10; row++) {
-    for (let col = 0; col < 10; col++) {
-      game.fillText(
-        emojis[mapRowCols[row][col]],
-        elementsSize * col,
-        elementsSize * row + 50
-      );
-    }
-  }
+  mapRowCols.forEach((row, rowI) => {
+    row.forEach((col, colI) => {
+      const emoji = emojis[col];
+      const posX = elementsSize * colI;
+      const posY = elementsSize * (rowI + 1);
+      game.fillText(emoji, posX, posY);
+      console.log({ row, rowI, col, colI });
+    });
+  });
+
+  // for (let row = 0; row < 10; row++) {
+  //   for (let col = 0; col < 10; col++) {
+  //     game.fillText(
+  //       emojis[mapRowCols[row][col]],
+  //       elementsSize * col,
+  //       elementsSize * row + 50
+  //     );
+  //   }
+  // }
 };
 
 window.addEventListener("DOMContentLoaded", setCanvasSize);
