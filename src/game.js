@@ -23,11 +23,21 @@ const startGame = () => {
   console.log({ canvasSize, elementsSize });
 
   game.font = elementsSize + "px Verdana";
-  game.textAlign = "end";
+  game.textAlign = "start";
 
-  for (let i = 1; i < 10; i++) {
-    game.fillText(emojis["X"], elementsSize * i, elementsSize);
-    game.fillText(emojis["X"], elementsSize, elementsSize * i);
+  const map = maps[0];
+  const mapRows = map.trim().split("\n");
+  const mapRowCols = mapRows.map((row) => row.trim().split(""));
+  console.log(mapRowCols);
+
+  for (let row = 0; row < 10; row++) {
+    for (let col = 0; col < 10; col++) {
+      game.fillText(
+        emojis[mapRowCols[row][col]],
+        elementsSize * col,
+        elementsSize * row + 50
+      );
+    }
   }
 };
 
