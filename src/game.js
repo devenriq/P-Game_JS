@@ -80,25 +80,40 @@ window.addEventListener(
     switch (name) {
       case "ArrowUp":
         console.log(`you pressed Arrow Up`);
-        playerPosition.y -= elementsSize;
-        startGame();
+        if (playerPosition.y - elementsSize < elementsSize) {
+          console.log("Out");
+        } else {
+          playerPosition.y -= elementsSize;
+          startGame();
+        }
+
         break;
       case "ArrowDown":
         console.log("You pressed Arrow Down");
-        playerPosition.y += elementsSize;
-        startGame();
+        if (playerPosition.y + elementsSize > canvasSize) {
+          console.log("Out");
+        } else {
+          playerPosition.y += elementsSize;
+          startGame();
+        }
 
         break;
       case "ArrowLeft":
-        console.log("You pressed Arrow Left");
-        playerPosition.x -= elementsSize;
-        startGame();
+        if (playerPosition.x - elementsSize < 0) {
+          console.log("Out");
+        } else {
+          playerPosition.x -= elementsSize;
+          startGame();
+        }
 
         break;
       case "ArrowRight":
-        console.log("You pressed Arrow Right");
-        playerPosition.x += elementsSize;
-        startGame();
+        if (playerPosition.x + elementsSize > canvasSize - elementsSize) {
+          console.log("Out");
+        } else {
+          playerPosition.x += elementsSize;
+          startGame();
+        }
         break;
       default:
         break;
