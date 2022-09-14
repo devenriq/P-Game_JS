@@ -51,5 +51,46 @@ const startGame = () => {
   // }
 };
 
+const upButton = document.querySelector("#up");
+const leftButton = document.querySelector("#left");
+const rightButton = document.querySelector("#right");
+const downButton = document.querySelector("#down");
+
+const pressedKey = (key) => (e) => {
+  console.log(`You've pressed the ${key} key`);
+};
+
+window.addEventListener(
+  "keydown",
+  (event) => {
+    let name = event.key;
+    const code = event.code;
+
+    switch (name) {
+      case "ArrowUp":
+        console.log(`you pressed Arrow Up`);
+        break;
+      case "ArrowDown":
+        console.log("You pressed Arrow Down");
+        break;
+      case "ArrowLeft":
+        console.log("You pressed Arrow Left");
+        break;
+      case "ArrowRight":
+        console.log("You pressed Arrow Right");
+        break;
+      default:
+        break;
+    }
+    // Alert the key name and key code on keydown
+  },
+  false
+);
+
+upButton.addEventListener("click", pressedKey(upButton.id));
+leftButton.addEventListener("click", pressedKey(leftButton.id));
+rightButton.addEventListener("click", pressedKey(rightButton.id));
+downButton.addEventListener("click", pressedKey(downButton.id));
+
 window.addEventListener("DOMContentLoaded", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
