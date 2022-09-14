@@ -4,6 +4,11 @@ const game = canvas.getContext("2d");
 let canvasSize;
 let elementsSize;
 
+const playerPosition = {
+  x: undefined,
+  y: undefined,
+};
+
 const setCanvasSize = () => {
   if (window.innerHeight > window.innerWidth) {
     canvasSize = window.innerWidth * 0.8;
@@ -20,7 +25,7 @@ const setCanvasSize = () => {
 };
 
 const startGame = () => {
-  console.log({ canvasSize, elementsSize });
+  // console.log({ canvasSize, elementsSize });
 
   game.font = elementsSize + "px Verdana";
   game.textAlign = "start";
@@ -30,25 +35,31 @@ const startGame = () => {
   const mapRowCols = mapRows.map((row) => row.trim().split(""));
   // console.log(mapRowCols);
 
+  game.clearRect(0, 0, canvasSize, canvasSize);
+
   mapRowCols.forEach((row, rowI) => {
     row.forEach((col, colI) => {
       const emoji = emojis[col];
       const posX = elementsSize * colI;
       const posY = elementsSize * (rowI + 1);
+
+      if (col == "O") {
+        if (!playerPosition.x && !playerPosition.y) {
+          playerPosition.x = posX;
+          playerPosition.y = posY;
+          console.log(playerPosition);
+        }
+      }
+
       game.fillText(emoji, posX, posY);
-      console.log({ row, rowI, col, colI });
     });
   });
 
-  // for (let row = 0; row < 10; row++) {
-  //   for (let col = 0; col < 10; col++) {
-  //     game.fillText(
-  //       emojis[mapRowCols[row][col]],
-  //       elementsSize * col,
-  //       elementsSize * row + 50
-  //     );
-  //   }
-  // }
+  movePlayer();
+};
+
+const movePlayer = () => {
+  game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
 };
 
 const upButton = document.querySelector("#up");
@@ -69,15 +80,25 @@ window.addEventListener(
     switch (name) {
       case "ArrowUp":
         console.log(`you pressed Arrow Up`);
+        playerPosition.y -= elementsSize;
+        startGame();
         break;
       case "ArrowDown":
         console.log("You pressed Arrow Down");
+        playerPosition.y += elementsSize;
+        startGame();
+
         break;
       case "ArrowLeft":
         console.log("You pressed Arrow Left");
+        playerPosition.x -= elementsSize;
+        startGame();
+
         break;
       case "ArrowRight":
         console.log("You pressed Arrow Right");
+        playerPosition.x += elementsSize;
+        startGame();
         break;
       default:
         break;
